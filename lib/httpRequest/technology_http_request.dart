@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:news_hub/constant/Api.dart';
-import 'package:news_hub/model/apple_article/apple_article.dart';
+ 
 import 'package:news_hub/model/articles_about_bitcoin/articles_about_bitcoin.dart';
 import 'package:news_hub/model/buisness/buisness.dart';
 
@@ -46,11 +46,5 @@ class ApirequestCall {
     return data;
   }
 
-  Future<AppleArticle> ArticlesAboutAppleApifun() async {
-    final response = await http.get(Uri.parse(buisnessApi));
-    final jsonbody = jsonDecode(response.body) as Map<String, dynamic>;
 
-    final data = AppleArticle.fromJson(jsonbody);
-    return data;
-  }
 }

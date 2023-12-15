@@ -21,11 +21,14 @@ class NewsHorizontalswipe extends StatefulWidget {
 int _currentpageindex = 0;
 
 class _NewsHorizontalswipeState extends State<NewsHorizontalswipe> {
-  //@override
-  // void initState() {
+  @override
+  void initState() {
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {});
+    });
+    super.initState();
+  }
 
-  //   super.initState();
-  // }
   @override
   Widget build(BuildContext context) {
     return Column(

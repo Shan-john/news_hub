@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/BuisnessVeiw.dart';
-import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/appleveiw.dart';
+
 import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/bitcoinveiw.dart';
 import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/homelistviewwidget.dart';
 import 'package:news_hub/Presentation/homescreenwidget/home/widget.dart';
@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Scaffold(
         backgroundColor: HexColor("242424"),
         body: NestedScrollView(
@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                     tabs: [
                       OvalCard(title: "Home"),
                       OvalCard(title: "Buisness"),
-                      OvalCard(title: "Apple"),
+                     
                       OvalCard(title: "Bitcoin"),
                     ]),
                 backgroundColor: HexColor("242424"),
@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
             child: TabBarView(children: [
               FirstScreen(),
               BuisnessScreen(),
-              AppleNewsScreen(),
+            
               BitcoinNewsScreen()
             ]),
           ),
@@ -115,14 +115,7 @@ class BuisnessScreen extends StatelessWidget {
   }
 }
 
-class AppleNewsScreen extends StatelessWidget {
-  const AppleNewsScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(child: Applelistveiwwidget());
-  }
-}
 
 class BitcoinNewsScreen extends StatelessWidget {
   const BitcoinNewsScreen({super.key});

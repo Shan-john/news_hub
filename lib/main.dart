@@ -4,7 +4,7 @@ import 'package:news_hub/Presentation/homescreenwidget/home/home.dart';
 import 'package:news_hub/constant/Routes.dart';
 import 'package:news_hub/constant/constantvariables.dart';
 import 'package:news_hub/httpRequest/technology_http_request.dart';
-
+import 'package:connectivity/connectivity.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -50,13 +50,23 @@ class _MyappState extends State<Myapp> {
   }
 }
 
+
+
+
+
 Future<void> fetchData() async {
+  // var connectivityResult = await (Connectivity().checkConnectivity());
+  // if (connectivityResult == ConnectivityResult.none) {
+  //   print('No internet connection');
+  //   return;
+  // }
+
+  // Make your HTTP request here
   Data.instance.wallStreetArticle =
       await ApirequestCall.instance.wallStreetJournalApifun();
   Data.instance.articlesAboutBitcoin =
       await ApirequestCall.instance.ArticlesAboutBitcoinApifun();
   Data.instance.articlesAboutbuisness =
       await ApirequestCall.instance.ArticlesAboutBuisnessApifun();
-  Data.instance.appleArticle =
-      await ApirequestCall.instance.ArticlesAboutAppleApifun();
+
 }

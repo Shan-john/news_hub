@@ -12,9 +12,9 @@ class Bitcoinlistveiwwidget extends StatelessWidget {
       primary: false,
       shrinkWrap: true,
       physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
-      itemCount: Data.instance.articlesAboutbuisness?.articles?.length,
+      itemCount: Data.instance.articlesAboutBitcoin?.articles?.length,
       itemBuilder: (BuildContext context, int index) {
-        final newsdata = Data.instance.articlesAboutbuisness?.articles?[index];
+        final newsdata = Data.instance.articlesAboutBitcoin?.articles?[index];
         String imageUrl = newsdata?.urlToImage ?? Dummy.instance.nullimage;
         String title = newsdata?.title ?? "";
 
