@@ -16,7 +16,7 @@ class ImageSection extends StatelessWidget {
     return Hero(
       tag: 'tag1$animationtagindex',
       child: Container(
-        width: 379,
+        width: MediaQuery.of(context).size.width-10,
         height: 366,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(

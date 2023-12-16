@@ -11,7 +11,7 @@ class ContentSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      content,
+      "$content read more.. ",
       style: const TextStyle(
           fontWeight: FontWeight.w300,
           color: Color.fromARGB(255, 214, 214, 214),

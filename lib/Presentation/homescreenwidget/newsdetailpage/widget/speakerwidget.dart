@@ -1,7 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
+//
 class SpeakerButton extends StatefulWidget {
   final String content;
   const SpeakerButton({super.key, required this.content});
@@ -13,20 +14,28 @@ class SpeakerButton extends StatefulWidget {
 class _SpeakerButtonState extends State<SpeakerButton> {
   final String defaultLanguage = 'en-US';
 
-  late FlutterTts flutterTts;
-  String textToSpeech = "Hello, Flutter TTS!";
-  bool isPlaying = false;
-  @override
-  void initState() {
-    super.initState();
-    flutterTts = FlutterTts();
-  }
 
-  Future<void> _speak() async {
+  FlutterTts flutterTts = FlutterTts();
+
+  String textToSpeech = "shan jon shone john";
+
+  double volume = 1.0;
+  double pitch = 1.0;
+  double rate = 1.5;
+
+  Future<void> _speak({required String text}) async {
+    await flutterTts.setLanguage(defaultLanguage);
+    await flutterTts.setVolume(volume);
+    await flutterTts.setSpeechRate(rate);
+    await flutterTts.setPitch(pitch);
+    await flutterTts.setSpeechRate(0.5);
     if (textToSpeech.isNotEmpty) {
-      await flutterTts.speak(textToSpeech);
-      setState(() {
-        isPlaying = true;
+      await flutterTts.speak(text);
+
+      Future.delayed(Duration(seconds: 4), () {
+        setState(() {
+          isSpeakericonCliked = false;
+        });
       });
     }
   }
@@ -34,28 +43,33 @@ class _SpeakerButtonState extends State<SpeakerButton> {
   Future<void> _pause() async {
     await flutterTts.pause();
     setState(() {
-      isPlaying = false;
+      isSpeakericonCliked = false;
     });
   }
-
 
   bool isSpeakericonCliked = false;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-         isPlaying ? _pause : _speak;
         setState(() {
           isSpeakericonCliked = !isSpeakericonCliked;
         });
+        textToSpeech = widget.content.toString();
+        print(textToSpeech);
+
+        isSpeakericonCliked == true ? _speak(text: textToSpeech) : _pause();
+        //  setState(() {
+        //   isSpeakericonCliked = !isSpeakericonCliked;
+        // });
       },
       child: isSpeakericonCliked == false
-          ? Icon(
+          ? const Icon(
               Icons.volume_off_rounded,
               color: Colors.white,
               size: 30,
             )
-          : Icon(
+          : const Icon(
               Icons.volume_up_rounded,
               color: Color.fromARGB(255, 255, 255, 255),
               size: 30,

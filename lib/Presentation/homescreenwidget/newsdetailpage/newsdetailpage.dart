@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:gap/gap.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/contentSection.dart';
@@ -8,8 +9,8 @@ import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/lin
 import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/speakerwidget.dart';
 import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/titleSection.dart';
 
- 
 import 'package:news_hub/constant/routes.dart';
+
 
 class NewsDetailScreen extends StatelessWidget {
   final int animationtagindex;
@@ -17,7 +18,7 @@ class NewsDetailScreen extends StatelessWidget {
   final String title;
   final String description;
   final String directurl;
-  //  final String directurl;
+
   final String content;
   const NewsDetailScreen(
       {super.key,
@@ -33,11 +34,11 @@ class NewsDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: HexColor("242424"),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(10 ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Gap(20),
               InkWell(
@@ -52,11 +53,17 @@ class NewsDetailScreen extends StatelessWidget {
                     )),
               ),
               const Gap(20),
-              ImageSection(animationtagindex: animationtagindex, imageurl: imageurl),
+              ImageSection(
+                  animationtagindex: animationtagindex, imageurl: imageurl),
               Gap(10),
               TitleSection(title: title),
               Gap(5),
-              SpeakerButton(content: '',),
+              Align(
+                  alignment: Alignment.centerLeft,
+                  child: SpeakerButton(
+                    content: content,
+                  )),
+              Gap(5),
               DescriptionSection(description: description),
               Gap(10),
               ContentSection(content: content),

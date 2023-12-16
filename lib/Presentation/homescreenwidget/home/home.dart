@@ -1,4 +1,3 @@
-import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -6,10 +5,11 @@ import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/Buisn
 
 import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/bitcoinveiw.dart';
 import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/homelistviewwidget.dart';
+import 'package:news_hub/Presentation/homescreenwidget/home/search/networkfailerScreen/networkreconnetScreen.dart';
 import 'package:news_hub/Presentation/homescreenwidget/home/widget.dart';
 import 'package:news_hub/Presentation/homescreenwidget/horizontalscrollwidget/horizontalSwipecard.dart';
-import 'package:news_hub/constant/constantvariables.dart';
-import 'package:news_hub/httpRequest/technology_http_request.dart';
+
+
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -17,23 +17,22 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-  bool isloading = false;
+
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-   updateWidget();
+    updateWidget();
     super.initState();
   }
 
-
-  Future<bool> updateWidget() async {
-
-    setState(() {
-      isloading = false;
+  Future<void> updateWidget() async {
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        
+      });
     });
+
     print("data got");
-    return isloading;
-    
   }
 
   @override
@@ -85,9 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ];
           },
           body: TabBarView(children: [
-            isloading==false ? FirstScreen() : Circularloading(),
-           isloading==false ? BuisnessScreen() : Circularloading(),
-               isloading==false ? BitcoinNewsScreen() : Circularloading(),
+            FirstScreen() ,
+             BuisnessScreen() ,
+             BitcoinNewsScreen() ,
           ]),
         ),
       ),

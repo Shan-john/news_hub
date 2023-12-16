@@ -1,5 +1,5 @@
-const String api = "a4c60fa30cd040c9935ec1b087966590";
-//String api = "8479e6404b0047c08545ead9e9bef42c";
+//  String api = "a4c60fa30cd040c9935ec1b087966590";
+String api = "8479e6404b0047c08545ead9e9bef42c";
 String WallStreetJournalApi =
     "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=$api";
 String BitcoinApi = "https://newsapi.org/v2/everything?q=bitcoin&apiKey=$api";
