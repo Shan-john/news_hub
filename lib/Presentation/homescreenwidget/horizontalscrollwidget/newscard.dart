@@ -38,7 +38,8 @@ class HorizontalNewsSwipeCardWidget extends StatelessWidget {
                   height: 40,
                   child: Text(
                     title,
-                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
                     style: const TextStyle(
                       color: Color.fromARGB(255, 255, 255, 255),
                       fontSize: 15,

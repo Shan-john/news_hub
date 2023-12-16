@@ -29,3 +29,28 @@ class OvalCard extends StatelessWidget {
     );
   }
 }
+
+
+
+class Circularloading extends StatelessWidget {
+  const Circularloading({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+          color: Colors.transparent,
+          alignment: Alignment.center,
+          height: 50,
+          width: 50,
+          child: const CircularProgressIndicator(
+            color: Color.fromARGB(
+              255,
+              233,
+              205,
+              79,
+            ),
+          )),
+    );
+  }
+}

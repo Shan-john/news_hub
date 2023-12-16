@@ -45,6 +45,8 @@ dependencies:
   gap: ^3.0.1
   hexcolor: ^3.0.1
   connectivity: ^3.0.0
+  url_launcher: ^6.2.2
+  flutter_tts: ^3.8.5
  
   
 dev_dependencies:
@@ -72,8 +74,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # asset:
-  #   asset/errorimage.jpg
+asset:
+  asset/errorimage.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

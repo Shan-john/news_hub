@@ -11,19 +11,25 @@ class Buisnesslistveiwwidget extends StatelessWidget {
     return ListView.builder(
       primary: false,
       shrinkWrap: true,
-      physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
+      physics: const ScrollPhysics(parent: NeverScrollableScrollPhysics()),
       itemCount: Data.instance.articlesAboutbuisness?.articles?.length,
       itemBuilder: (BuildContext context, int index) {
         final newsdata = Data.instance.articlesAboutbuisness?.articles?[index];
         String imageUrl = newsdata?.urlToImage ?? Dummy.instance.nullimage;
         String title = newsdata?.title ?? "";
-
+String description = newsdata?.description ?? "";
+ String content = newsdata?.content ?? "";
+   String directurl = newsdata?.url ?? "";
         return InkWell(
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
                   return NewsDetailScreen(
+                    directurl: directurl,
+                    content: content,
+                    description: description,
+                      title: title,
                     imageurl: imageUrl,
                     animationtagindex: index,
                   );

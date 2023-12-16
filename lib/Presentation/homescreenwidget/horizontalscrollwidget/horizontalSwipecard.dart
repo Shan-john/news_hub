@@ -25,7 +25,8 @@ class _NewsHorizontalswipeState extends State<NewsHorizontalswipe> {
   void initState() {
     Future.delayed(Duration(seconds: 2), () {
       setState(() {});
-    });
+     }
+    );
     super.initState();
   }
 
@@ -43,6 +44,10 @@ class _NewsHorizontalswipeState extends State<NewsHorizontalswipe> {
               String imageUrl =
                   newsdata?.urlToImage ?? Dummy.instance.nullimage;
               String title = newsdata?.title ?? "";
+              String description = newsdata?.description ?? "";
+               String content = newsdata?.content ?? "";
+            
+                 String directurl = newsdata?.url ?? "";
               return InkWell(
                 child: HorizontalNewsSwipeCardWidget(
                   image: imageUrl,
@@ -52,6 +57,10 @@ class _NewsHorizontalswipeState extends State<NewsHorizontalswipe> {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {
                     return NewsDetailScreen(
+                      directurl:directurl,
+                     content: content,
+                    description:   description,
+                        title: title,
                       animationtagindex: index,
                       imageurl: imageUrl,
                     );

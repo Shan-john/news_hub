@@ -1,152 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/contentSection.dart';
+import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/descriptionSection.dart';
+import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/imageSection.dart';
+import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/linkSection.dart';
+import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/speakerwidget.dart';
+import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/titleSection.dart';
+
+ 
+import 'package:news_hub/constant/routes.dart';
 
 class NewsDetailScreen extends StatelessWidget {
   final int animationtagindex;
   final String imageurl;
-
+  final String title;
+  final String description;
+  final String directurl;
+  //  final String directurl;
+  final String content;
   const NewsDetailScreen(
-      {super.key, required this.animationtagindex, required this.imageurl});
+      {super.key,
+      required this.animationtagindex,
+      required this.imageurl,
+      required this.title,
+      required this.description,
+      required this.content,
+      required this.directurl});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Gap(20),
-            Hero(
-              tag: 'tag1$animationtagindex',
-              child: Container(
-                width: 379,
-                height: 366,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        colorFilter: ColorFilter.mode(
-                            Color.fromARGB(141, 177, 177, 177),
-                            BlendMode.multiply),
-                        fit: BoxFit.cover,
-                        image: NetworkImage(imageurl)),
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                    color: Color(0xFF242424)),
+      backgroundColor: HexColor("242424"),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(10),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gap(20),
+              InkWell(
+                onTap: () {
+                  Routes.instance.pop(context);
+                },
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Icon(
+                      Icons.arrow_back_ios_rounded,
+                      color: Colors.white,
+                    )),
               ),
-            ),
-            //  Align(
-            //  // alignment: Alignment(1, 3),
-            //   child: ,)
-          ],
+              const Gap(20),
+              ImageSection(animationtagindex: animationtagindex, imageurl: imageurl),
+              Gap(10),
+              TitleSection(title: title),
+              Gap(5),
+              SpeakerButton(content: '',),
+              DescriptionSection(description: description),
+              Gap(10),
+              ContentSection(content: content),
+              Gap(15),
+              LinkSection(directurl: directurl),
+              Gap(50)
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-// child: Stack(
-//               children: [
-//                 Positioned(
-//                   left: 16,
-//                   top: 27,
-//                   child: Container(
-//                     width: 379,
-//                     height: 366,
-//                     child: Stack(
-//                       children: [
-//                         Positioned(
-//                           left: 0,
-//                           top: 0,
-//                           child: Container(
-//                              width: 379,
-//            height: 366,
-//                             decoration: ShapeDecoration(
-//                               image: DecorationImage(
-//                                 image: NetworkImage("https://via.placeholder.com/379x358"),
-//                                 fit: BoxFit.fill,
-//                               ),
-//                               shape: RoundedRectangleBorder(
-//                                 borderRadius: BorderRadius.circular(24),
-//                               ),
-//                             ),
-//                           ),
-//                         ),
-//                         Positioned(
-//                           left: 31,
-//                           top: 387,
-//                           child: SizedBox(
-//                             width: 283,
-//                             height: 23,
-//                             child: Text(
-//                               'title',
-//                               style: TextStyle(
-//                                 color: Colors.white,
-//                                 fontSize: 25,
-//                                 fontFamily: 'Inter',
-//                                 fontWeight: FontWeight.w400,
-//                                 height: 0,
-//                               ),
-//                             ),
-//                           ),
-//                         ),
-//                         Positioned(
-//                           left: 31,
-//                           top: 431,
-//                           child: SizedBox(
-//                             width: 317,
-//                             height: 36,
-//                             child: Text(
-//                               'discriptiondescription ',
-//                               style: TextStyle(
-//                                 color: Colors.white,
-//                                 fontSize: 15,
-//                                 fontStyle: FontStyle.italic,
-//                                 fontFamily: 'Inter',
-//                                 fontWeight: FontWeight.w400,
-//                                 height: 0,
-//                               ),
-//                             ),
-//                           ),
-//                         ),
-//                         Positioned(
-//                           left: 21,
-//                           top: 467,
-//                           child: SizedBox(
-//                             width: 345,
-//                             height: 18,
-//                             child: Text(
-//                               'content',
-//                               style: TextStyle(
-//                                 color: Colors.white,
-//                                 fontSize: 15,
-//                                 fontStyle: FontStyle.italic,
-//                                 fontFamily: 'Inter',
-//                                 fontWeight: FontWeight.w400,
-//                                 height: 0,
-//                               ),
-//                             ),
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//                 Positioned(
-//                   left: 274,
-//                   top: 438,
-//                   child: SizedBox(
-//                     width: 108,
-//                     height: 12,
-//                     child: Text(
-//                       'publishedAt',
-//                       style: TextStyle(
-//                         color: Colors.white,
-//                         fontSize: 15,
-//                         fontStyle: FontStyle.italic,
-//                         fontFamily: 'Inter',
-//                         fontWeight: FontWeight.w400,
-//                         height: 0,
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),

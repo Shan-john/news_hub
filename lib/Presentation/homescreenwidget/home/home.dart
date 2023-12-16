@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -7,11 +8,33 @@ import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/bitco
 import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/homelistviewwidget.dart';
 import 'package:news_hub/Presentation/homescreenwidget/home/widget.dart';
 import 'package:news_hub/Presentation/homescreenwidget/horizontalscrollwidget/horizontalSwipecard.dart';
+import 'package:news_hub/constant/constantvariables.dart';
+import 'package:news_hub/httpRequest/technology_http_request.dart';
 
-import 'package:news_hub/main.dart';
-
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+  bool isloading = false;
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+   updateWidget();
+    super.initState();
+  }
+
+
+  Future<bool> updateWidget() async {
+
+    setState(() {
+      isloading = false;
+    });
+    print("data got");
+    return isloading;
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +49,12 @@ class HomeScreen extends StatelessWidget {
           ) {
             return [
               SliverAppBar(
-                bottom: TabBar(
+                bottom: const TabBar(
                     isScrollable: true,
                     dividerColor: Color.fromARGB(255, 85, 85, 85),
                     tabs: [
                       OvalCard(title: "Home"),
                       OvalCard(title: "Buisness"),
-                     
                       OvalCard(title: "Bitcoin"),
                     ]),
                 backgroundColor: HexColor("242424"),
@@ -62,17 +84,11 @@ class HomeScreen extends StatelessWidget {
               )
             ];
           },
-          body: RefreshIndicator(
-            onRefresh: () async {
-              fetchData();
-            },
-            child: TabBarView(children: [
-              FirstScreen(),
-              BuisnessScreen(),
-            
-              BitcoinNewsScreen()
-            ]),
-          ),
+          body: TabBarView(children: [
+            isloading==false ? FirstScreen() : Circularloading(),
+           isloading==false ? BuisnessScreen() : Circularloading(),
+               isloading==false ? BitcoinNewsScreen() : Circularloading(),
+          ]),
         ),
       ),
     );
@@ -114,8 +130,6 @@ class BuisnessScreen extends StatelessWidget {
     return SingleChildScrollView(child: Buisnesslistveiwwidget());
   }
 }
-
-
 
 class BitcoinNewsScreen extends StatelessWidget {
   const BitcoinNewsScreen({super.key});

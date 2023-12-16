@@ -17,13 +17,19 @@ class Bitcoinlistveiwwidget extends StatelessWidget {
         final newsdata = Data.instance.articlesAboutBitcoin?.articles?[index];
         String imageUrl = newsdata?.urlToImage ?? Dummy.instance.nullimage;
         String title = newsdata?.title ?? "";
-
+String description = newsdata?.description ?? "";
+ String content = newsdata?.content ?? "";
+   String directurl = newsdata?.url ?? "";
         return InkWell(
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
                   return NewsDetailScreen(
+                    directurl: directurl,
+                    content: content,
+                    description:description,
+                    title: title,
                     imageurl: imageUrl,
                     animationtagindex: index,
                   );
