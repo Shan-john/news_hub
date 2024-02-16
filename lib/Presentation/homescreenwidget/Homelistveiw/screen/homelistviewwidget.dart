@@ -9,10 +9,11 @@ class Homelistveiwwidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
     return ListView.builder(
       primary: false,
       shrinkWrap: true,
-      physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
+      physics: const ScrollPhysics(parent: NeverScrollableScrollPhysics()),
       itemCount: Data.instance.wallStreetArticle?.articles?.length,
       itemBuilder: (BuildContext context, int index) {
         final newsdata = Data.instance.wallStreetArticle?.articles?[index];

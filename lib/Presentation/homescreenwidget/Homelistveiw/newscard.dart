@@ -9,17 +9,18 @@ class NewsCard extends StatelessWidget {
       {required this.image, required this.title, required this.Discription});
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.only(bottom: 30),
-      width: 379,
+      margin: const EdgeInsets.only(bottom: 30,left: 10,right: 10),
+      width: size.width-20 ,
       height: 474,
       child: Stack(
         children: [
           Positioned(
-            left: 0,
+            left: 0, 
             top: 0,
             child: Container(
-              width: 379,
+              width: size.width-20 ,
               height: 474,
               decoration: ShapeDecoration(
                 color: const Color.fromARGB(255, 39, 39, 39),
@@ -58,7 +59,7 @@ class NewsCard extends StatelessWidget {
             top: 380,
             child: SizedBox(
               width: 317,
-              height: 36,
+              height: 60,
               child: Text(
                 Discription,
                 overflow: TextOverflow.ellipsis,

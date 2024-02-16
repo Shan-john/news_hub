@@ -5,11 +5,13 @@ import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/Buisn
 
 import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/bitcoinveiw.dart';
 import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/homelistviewwidget.dart';
-import 'package:news_hub/Presentation/homescreenwidget/home/search/networkfailerScreen/networkreconnetScreen.dart';
+import 'package:news_hub/Presentation/homescreenwidget/home/search/BuisnessArticleSearchpage/BuisnessArticleSearchpage.dart';
+import 'package:news_hub/Presentation/homescreenwidget/home/search/WallStreetArticleSearchpage/WallstreetArticleSearchpage.dart';
+import 'package:news_hub/Presentation/homescreenwidget/home/search/bitconSearch/searchScreen.dart';
+import 'package:news_hub/Presentation/networkfailerScreen/networkreconnetScreen.dart';
 import 'package:news_hub/Presentation/homescreenwidget/home/widget.dart';
 import 'package:news_hub/Presentation/homescreenwidget/horizontalscrollwidget/horizontalSwipecard.dart';
-
-
+import 'package:news_hub/constant/routes.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -27,9 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> updateWidget() async {
     Future.delayed(Duration(seconds: 2), () {
-      setState(() {
-        
-      });
+      setState(() {});
     });
 
     print("data got");
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: HexColor("242424"),
+        backgroundColor: HexColor("242424"), 
         body: NestedScrollView(
           headerSliverBuilder: (
             BuildContext context,
@@ -61,7 +61,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.only(right: 35.0),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        int indextab = DefaultTabController.of(context).index;
+                        print(indextab);
+                       
+                       Routes.instance.push(
+                            widget: indextab ==0 ? WallstreetArticleSearchpage(tabindex: indextab): indextab == 1? BuisnessArticleSearchpage(tabindex: indextab):BitconArticleSearchPage(tabindex: indextab),
+                            context: context);
+                      },
                       child: const Icon(
                         Icons.search,
                         color: Color.fromARGB(224, 255, 255, 255),
@@ -84,9 +91,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ];
           },
           body: TabBarView(children: [
-            FirstScreen() ,
-             BuisnessScreen() ,
-             BitcoinNewsScreen() ,
+            FirstScreen(),
+            BuisnessScreen(),
+            BitcoinNewsScreen(),
           ]),
         ),
       ),

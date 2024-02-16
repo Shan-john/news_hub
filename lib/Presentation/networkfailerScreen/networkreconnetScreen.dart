@@ -1,6 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:news_hub/Presentation/homescreenwidget/home/home.dart';
 import 'package:news_hub/constant/constantvariables.dart';
@@ -37,14 +38,14 @@ class PoornetWortScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: HexColor("242424"),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center  ,
         children: [
-          ///Image(image: AssetImage(Dummy.instance.poornetworkimage)),
           Container(
-            height: 500,
+          
+            height: 380,
             width: 500,
-            //  child: Image.network("https://img.freepik.com/free-vector/crew-creator-building-new-company-utilize-analitics-gathering-statistic-start-production-technology-staff-operating-startup-industry-growth-vector-isolated-concept-metaphor-illustration_335657-4309.jpg?w=826&t=st=1702747088~exp=1702747688~hmac=1e8602b1882ce5ad191c77ccb893aa53ddc7de6f12150ac88cd94c1c864486d9"),
-            decoration: BoxDecoration(
-                //color: Colors.amber,
+             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(Dummy.instance.poornetworkimage))),
           ),
@@ -55,17 +56,29 @@ class PoornetWortScreen extends StatelessWidget {
                 color: HexColor("856EE9"),
                 borderRadius: BorderRadius.circular(40),
               ),
-              child: Text(
-                "Reconnet",
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
+              child: Textwidget(text: "Retry",size: 20), 
             ),
             onTap: () {
               fetchData();
             },
-          )
-        ],
+          ),
+           
+          Textwidget(text: "Whoops!",  size: 30),
+        
+           Padding(
+             padding: const EdgeInsets.symmetric(horizontal:50.0),
+             child: Textwidget(text: "No internet connection found.Check your connection or retry,", size: 18 ),
+           ),
+           Gap(90)
+        ], 
       ),
     );
+  }
+
+  Text Textwidget({required String text,required double size}) {
+    return Text(
+              text,
+              style: TextStyle(fontSize: size, color: Colors.white),
+            );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -14,14 +16,13 @@ class SpeakerButton extends StatefulWidget {
 class _SpeakerButtonState extends State<SpeakerButton> {
   final String defaultLanguage = 'en-US';
 
-
   FlutterTts flutterTts = FlutterTts();
 
-  String textToSpeech = "shan jon shone john";
+  String textToSpeech = "not recognized";
 
   double volume = 1.0;
   double pitch = 1.0;
-  double rate = 1.5;
+  double rate = 1.0;
 
   Future<void> _speak({required String text}) async {
     await flutterTts.setLanguage(defaultLanguage);
@@ -31,23 +32,21 @@ class _SpeakerButtonState extends State<SpeakerButton> {
     await flutterTts.setSpeechRate(0.5);
     if (textToSpeech.isNotEmpty) {
       await flutterTts.speak(text);
-
-      Future.delayed(Duration(seconds: 4), () {
-        setState(() {
-          isSpeakericonCliked = false;
-        });
-      });
     }
   }
 
   Future<void> _pause() async {
     await flutterTts.pause();
-    setState(() {
-      isSpeakericonCliked = false;
-    });
   }
 
   bool isSpeakericonCliked = false;
+  @override
+  void dispose() { 
+    
+    _pause();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -56,12 +55,9 @@ class _SpeakerButtonState extends State<SpeakerButton> {
           isSpeakericonCliked = !isSpeakericonCliked;
         });
         textToSpeech = widget.content.toString();
-        print(textToSpeech);
 
         isSpeakericonCliked == true ? _speak(text: textToSpeech) : _pause();
-        //  setState(() {
-        //   isSpeakericonCliked = !isSpeakericonCliked;
-        // });
+         
       },
       child: isSpeakericonCliked == false
           ? const Icon(
@@ -75,5 +71,13 @@ class _SpeakerButtonState extends State<SpeakerButton> {
               size: 30,
             ),
     );
+  }
+
+  Future<Null> Delay(int second) {
+    return Future.delayed(Duration(seconds: second), () {
+      setState(() {
+        isSpeakericonCliked = false;
+      });
+    });
   }
 }

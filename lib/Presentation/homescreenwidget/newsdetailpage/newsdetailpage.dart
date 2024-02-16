@@ -8,9 +8,7 @@ import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/ima
 import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/linkSection.dart';
 import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/speakerwidget.dart';
 import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/widget/titleSection.dart';
-
 import 'package:news_hub/constant/routes.dart';
-
 
 class NewsDetailScreen extends StatelessWidget {
   final int animationtagindex;
@@ -34,18 +32,18 @@ class NewsDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: HexColor("242424"),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(10 ),
+        padding: EdgeInsets.symmetric(horizontal:10 ),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround ,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Gap(20),
+              Gap(30),
               InkWell(
                 onTap: () {
                   Routes.instance.pop(context);
                 },
-                child: Align(
+                child:const Align(
                     alignment: Alignment.centerLeft,
                     child: Icon(
                       Icons.arrow_back_ios_rounded,

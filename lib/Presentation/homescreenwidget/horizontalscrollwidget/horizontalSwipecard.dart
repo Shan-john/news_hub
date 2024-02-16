@@ -2,7 +2,6 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import 'package:news_hub/Presentation/homescreenwidget/horizontalscrollwidget/newscard.dart';
 import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/newsDetailpage.dart';
 import 'package:news_hub/constant/constantvariables.dart';

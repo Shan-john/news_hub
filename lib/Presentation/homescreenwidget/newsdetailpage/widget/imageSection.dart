@@ -16,12 +16,13 @@ class ImageSection extends StatelessWidget {
     return Hero(
       tag: 'tag1$animationtagindex',
       child: Container(
-        width: MediaQuery.of(context).size.width-10,
+       
+        width: MediaQuery.of(context).size.width,
         height: 366,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
             image: DecorationImage(
-                colorFilter: ColorFilter.mode(
+                colorFilter:const  ColorFilter.mode(
                     Color.fromARGB(141, 177, 177, 177),
                     BlendMode.multiply),
                 fit: BoxFit.cover,

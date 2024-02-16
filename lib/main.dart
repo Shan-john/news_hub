@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:news_hub/Presentation/homescreenwidget/home/home.dart';
-import 'package:news_hub/Presentation/homescreenwidget/home/search/networkfailerScreen/networkreconnetScreen.dart';
+import 'package:news_hub/Presentation/networkfailerScreen/networkreconnetScreen.dart';
 import 'package:news_hub/constant/Routes.dart';
 import 'package:news_hub/constant/constantvariables.dart';
 import 'package:news_hub/httpRequest/technology_http_request.dart';
@@ -10,6 +11,9 @@ import 'package:connectivity/connectivity.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp
+  ]);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: Myapp(),
@@ -27,9 +31,6 @@ class _MyappState extends State<Myapp> {
   @override
   void initState() {
     fetchData();
-    // Future.delayed(const Duration(seconds: 2), () {
-    //   Routes.instance.pushreplace(widget: HomeScreen(), context: context);
-    // });
     super.initState();
   }
 
@@ -38,7 +39,6 @@ class _MyappState extends State<Myapp> {
     if (connectivityResult == ConnectivityResult.none) {
       Routes.instance
           .pushreplace(widget: PoornetWortScreen(), context: context);
-
 
       return;
     }
@@ -50,28 +50,26 @@ class _MyappState extends State<Myapp> {
           await ApirequestCall.instance.ArticlesAboutBitcoinApifun();
       Data.instance.articlesAboutbuisness =
           await ApirequestCall.instance.ArticlesAboutBuisnessApifun();
-       Future.delayed(const Duration(milliseconds: 2), () {
-      Routes.instance.pushreplace(widget: HomeScreen(), context: context);
-    });
-   
+      Future.delayed(const Duration(milliseconds: 2), () {
+        Routes.instance.pushreplace(widget: HomeScreen(), context: context);
+      });
     } on Exception catch (e) {
       print(e);
       Routes.instance
           .pushreplace(widget: PoornetWortScreen(), context: context);
     }
-
-    // }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber,
+      
+      backgroundColor: const Color.fromARGB(255, 36, 36, 36),
       body: Container(
           alignment: Alignment.center,
           height: double.infinity,
           width: double.infinity,
-          child: Text("shan john")),
+          child: Text("shan john"))
     );
   }
 }
