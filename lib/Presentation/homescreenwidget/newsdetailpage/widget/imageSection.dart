@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ImageSection extends StatelessWidget {
@@ -16,15 +15,13 @@ class ImageSection extends StatelessWidget {
     return Hero(
       tag: 'tag1$animationtagindex',
       child: Container(
-       
         width: MediaQuery.of(context).size.width,
         height: 366,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
             image: DecorationImage(
-                colorFilter:const  ColorFilter.mode(
-                    Color.fromARGB(141, 177, 177, 177),
-                    BlendMode.multiply),
+                colorFilter: const ColorFilter.mode(
+                    Color.fromARGB(141, 177, 177, 177), BlendMode.multiply),
                 fit: BoxFit.cover,
                 image: NetworkImage(imageurl)),
             borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -33,4 +30,3 @@ class ImageSection extends StatelessWidget {
     );
   }
 }
-

@@ -41,8 +41,7 @@ class _SpeakerButtonState extends State<SpeakerButton> {
 
   bool isSpeakericonCliked = false;
   @override
-  void dispose() { 
-    
+  void dispose() {
     _pause();
     super.dispose();
   }
@@ -57,7 +56,6 @@ class _SpeakerButtonState extends State<SpeakerButton> {
         textToSpeech = widget.content.toString();
 
         isSpeakericonCliked == true ? _speak(text: textToSpeech) : _pause();
-         
       },
       child: isSpeakericonCliked == false
           ? const Icon(

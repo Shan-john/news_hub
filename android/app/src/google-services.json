@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "801348833045",
+    "project_id": "news-hub-a0e7a",
+    "storage_bucket": "news-hub-a0e7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801348833045:android:453b6697e437c0854fe31c",
+        "android_client_info": {
+          "package_name": "com.example.news_hub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS7l5VYqDa1hcmYiP0DQFssPpyQo9PjYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

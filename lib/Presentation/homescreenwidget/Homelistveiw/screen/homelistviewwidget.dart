@@ -9,7 +9,6 @@ class Homelistveiwwidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return ListView.builder(
       primary: false,
       shrinkWrap: true,
@@ -17,11 +16,12 @@ class Homelistveiwwidget extends StatelessWidget {
       itemCount: Data.instance.wallStreetArticle?.articles?.length,
       itemBuilder: (BuildContext context, int index) {
         final newsdata = Data.instance.wallStreetArticle?.articles?[index];
-        String imageUrl = newsdata?.urlToImage ?? Dummy.instance.nullimage;
+        String imageUrl =
+            newsdata?.urlToImage ?? Customimage.instance.nullimage;
         String title = newsdata?.title ?? "";
- String description = newsdata?.description ?? "";
-  String content = newsdata?.content ?? "";
-    String directurl = newsdata?.url ?? "";
+        String description = newsdata?.description ?? "";
+        String content = newsdata?.content ?? "";
+        String directurl = newsdata?.url ?? "";
         return InkWell(
           onTap: () {
             Navigator.of(context).push(
@@ -31,7 +31,7 @@ class Homelistveiwwidget extends StatelessWidget {
                     directurl: directurl,
                     content: content,
                     description: description,
-                   title: title,
+                    title: title,
                     imageurl: imageUrl,
                     animationtagindex: index,
                   );

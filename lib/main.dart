@@ -1,19 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:news_hub/Presentation/Auth/loginpage.dart';
 
 import 'package:news_hub/Presentation/homescreenwidget/home/home.dart';
 import 'package:news_hub/Presentation/networkfailerScreen/networkreconnetScreen.dart';
+import 'package:news_hub/Presentation/profile/profile.dart';
 import 'package:news_hub/constant/Routes.dart';
 import 'package:news_hub/constant/constantvariables.dart';
 import 'package:news_hub/httpRequest/technology_http_request.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:news_hub/service/firebase_auth_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp
-  ]);
+  Firebase.initializeApp();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: Myapp(),
@@ -46,30 +49,51 @@ class _MyappState extends State<Myapp> {
     try {
       Data.instance.wallStreetArticle =
           await ApirequestCall.instance.wallStreetJournalApifun();
+
+      Data.instance.wallStreetArticle!.articles!
+          .removeWhere((element) => element.urlToImage == null);
+
       Data.instance.articlesAboutBitcoin =
           await ApirequestCall.instance.ArticlesAboutBitcoinApifun();
+
+      Data.instance.articlesAboutBitcoin!.articles!
+          .removeWhere((element) => element.urlToImage == null);
+
       Data.instance.articlesAboutbuisness =
           await ApirequestCall.instance.ArticlesAboutBuisnessApifun();
-      Future.delayed(const Duration(milliseconds: 2), () {
-        Routes.instance.pushreplace(widget: HomeScreen(), context: context);
+
+      Data.instance.articlesAboutbuisness!.articles!
+          .removeWhere((element) => element.urlToImage == null);
+
+     
+      MaterialPageRoute(builder: (context) {
+        return StreamBuilder(
+          stream: FirebaseAuth_Helper.instance.getAuthChange,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return HomeScreen();
+            } else {
+              return const LoginScreen();
+            }
+          },
+        );
       });
     } on Exception catch (e) {
-      print(e);
+    
       Routes.instance
           .pushreplace(widget: PoornetWortScreen(), context: context);
     }
   }
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      backgroundColor: const Color.fromARGB(255, 36, 36, 36),
-      body: Container(
-          alignment: Alignment.center,
-          height: double.infinity,
-          width: double.infinity,
-          child: Text("shan john"))
-    );
-  }
+        backgroundColor: const Color.fromARGB(255, 36, 36, 36),
+        body: Center(
+          child: Container(
+              alignment: Alignment.center,
+              height: 200 ,
+              child: Image.asset(Customimage.instance.applogo)),
+        ));
+  } 
 }

@@ -11,16 +11,16 @@ class NewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.only(bottom: 30,left: 10,right: 10),
-      width: size.width-20 ,
+      margin: const EdgeInsets.only(bottom: 30, left: 10, right: 10),
+      width: size.width - 20,
       height: 474,
       child: Stack(
         children: [
           Positioned(
-            left: 0, 
+            left: 0,
             top: 0,
             child: Container(
-              width: size.width-20 ,
+              width: size.width - 20,
               height: 474,
               decoration: ShapeDecoration(
                 color: const Color.fromARGB(255, 39, 39, 39),

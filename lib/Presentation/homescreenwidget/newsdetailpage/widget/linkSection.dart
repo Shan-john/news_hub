@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:news_hub/constant/functions.dart';
 

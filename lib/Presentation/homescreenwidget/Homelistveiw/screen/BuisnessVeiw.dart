@@ -15,11 +15,12 @@ class Buisnesslistveiwwidget extends StatelessWidget {
       itemCount: Data.instance.articlesAboutbuisness?.articles?.length,
       itemBuilder: (BuildContext context, int index) {
         final newsdata = Data.instance.articlesAboutbuisness?.articles?[index];
-        String imageUrl = newsdata?.urlToImage ?? Dummy.instance.nullimage;
+        String imageUrl =
+            newsdata?.urlToImage ?? Customimage.instance.nullimage;
         String title = newsdata?.title ?? "";
-String description = newsdata?.description ?? "";
- String content = newsdata?.content ?? "";
-   String directurl = newsdata?.url ?? "";
+        String description = newsdata?.description ?? "";
+        String content = newsdata?.content ?? "";
+        String directurl = newsdata?.url ?? "";
         return InkWell(
           onTap: () {
             Navigator.of(context).push(
@@ -29,7 +30,7 @@ String description = newsdata?.description ?? "";
                     directurl: directurl,
                     content: content,
                     description: description,
-                      title: title,
+                    title: title,
                     imageurl: imageUrl,
                     animationtagindex: index,
                   );

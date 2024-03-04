@@ -19,4 +19,3 @@ class ContentSection extends StatelessWidget {
     );
   }
 }
-

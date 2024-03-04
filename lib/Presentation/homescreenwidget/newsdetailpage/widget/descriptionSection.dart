@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class DescriptionSection extends StatelessWidget {
@@ -20,4 +19,3 @@ class DescriptionSection extends StatelessWidget {
     );
   }
 }
-

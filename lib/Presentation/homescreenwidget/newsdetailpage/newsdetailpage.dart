@@ -32,10 +32,10 @@ class NewsDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: HexColor("242424"),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal:10 ),
+        padding: EdgeInsets.symmetric(horizontal: 10),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround ,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Gap(30),
@@ -43,7 +43,7 @@ class NewsDetailScreen extends StatelessWidget {
                 onTap: () {
                   Routes.instance.pop(context);
                 },
-                child:const Align(
+                child: const Align(
                     alignment: Alignment.centerLeft,
                     child: Icon(
                       Icons.arrow_back_ios_rounded,

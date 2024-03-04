@@ -30,8 +30,6 @@ class OvalCard extends StatelessWidget {
   }
 }
 
-
-
 // class Circularloading extends StatelessWidget {
 //   const Circularloading({super.key});
 

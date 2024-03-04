@@ -9,10 +9,11 @@ class Data {
   Buisness? articlesAboutbuisness;
 }
 
-class Dummy {
-  static Dummy instance = Dummy();
+class Customimage {
+  static Customimage instance = Customimage();
   String nullimage =
       "https://i.pinimg.com/564x/ec/8c/f6/ec8cf6d6483d6b455a45fee4debaecad.jpg";
   String errorimage = "assets/errorimage.jpg";
   String poornetworkimage = 'assets/networkimage.png';
+  String applogo = "assets/splashimage.jpg";
 }

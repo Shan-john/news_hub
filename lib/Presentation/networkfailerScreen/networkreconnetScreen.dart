@@ -16,7 +16,7 @@ class PoornetWortScreen extends StatelessWidget {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult == ConnectivityResult.none) {
         print('No internet connection');
-   
+
         return;
       }
       // HTTP request here
@@ -39,15 +39,14 @@ class PoornetWortScreen extends StatelessWidget {
       backgroundColor: HexColor("242424"),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center  ,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-          
             height: 380,
             width: 500,
-             decoration: BoxDecoration(
+            decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(Dummy.instance.poornetworkimage))),
+                    image: AssetImage(Customimage.instance.poornetworkimage))),
           ),
           InkWell(
             child: Container(
@@ -56,29 +55,30 @@ class PoornetWortScreen extends StatelessWidget {
                 color: HexColor("856EE9"),
                 borderRadius: BorderRadius.circular(40),
               ),
-              child: Textwidget(text: "Retry",size: 20), 
+              child: Textwidget(text: "Retry", size: 20),
             ),
             onTap: () {
               fetchData();
             },
           ),
-           
-          Textwidget(text: "Whoops!",  size: 30),
-        
-           Padding(
-             padding: const EdgeInsets.symmetric(horizontal:50.0),
-             child: Textwidget(text: "No internet connection found.Check your connection or retry,", size: 18 ),
-           ),
-           Gap(90)
-        ], 
+          Textwidget(text: "Whoops!", size: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50.0),
+            child: Textwidget(
+                text:
+                    "No internet connection found.Check your connection or retry,",
+                size: 18),
+          ),
+          Gap(90)
+        ],
       ),
     );
   }
 
-  Text Textwidget({required String text,required double size}) {
+  Text Textwidget({required String text, required double size}) {
     return Text(
-              text,
-              style: TextStyle(fontSize: size, color: Colors.white),
-            );
+      text,
+      style: TextStyle(fontSize: size, color: Colors.white),
+    );
   }
 }

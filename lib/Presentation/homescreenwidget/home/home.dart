@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/screen/BuisnessVeiw.dart';
@@ -11,6 +12,8 @@ import 'package:news_hub/Presentation/homescreenwidget/home/search/bitconSearch/
 import 'package:news_hub/Presentation/networkfailerScreen/networkreconnetScreen.dart';
 import 'package:news_hub/Presentation/homescreenwidget/home/widget.dart';
 import 'package:news_hub/Presentation/homescreenwidget/horizontalscrollwidget/horizontalSwipecard.dart';
+import 'package:news_hub/Presentation/profile/profile.dart';
+import 'package:news_hub/constant/constantvariables.dart';
 import 'package:news_hub/constant/routes.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: HexColor("242424"), 
+        backgroundColor: HexColor("242424"),
+        drawer: SettingsPage(),
         body: NestedScrollView(
           headerSliverBuilder: (
             BuildContext context,
@@ -59,14 +63,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: HexColor("242424"),
                 actions: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 35.0),
+                    padding: const EdgeInsets.only(right: 10.0),
                     child: InkWell(
                       onTap: () {
                         int indextab = DefaultTabController.of(context).index;
-                        print(indextab);
-                       
-                       Routes.instance.push(
-                            widget: indextab ==0 ? WallstreetArticleSearchpage(tabindex: indextab): indextab == 1? BuisnessArticleSearchpage(tabindex: indextab):BitconArticleSearchPage(tabindex: indextab),
+
+                        Routes.instance.push(
+                            widget: indextab == 0
+                                ? WallstreetArticleSearchpage(
+                                    tabindex: indextab)
+                                : indextab == 1
+                                    ? BuisnessArticleSearchpage(
+                                        tabindex: indextab)
+                                    : BitconArticleSearchPage(
+                                        tabindex: indextab),
                             context: context);
                       },
                       child: const Icon(
@@ -74,13 +84,27 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Color.fromARGB(224, 255, 255, 255),
                       ),
                     ),
-                  )
-                ],
-                title: const Text(
-                  "News hub",
-                  style: TextStyle(
-                    color: Colors.white,
                   ),
+                ],
+                title: Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Scaffold.of(context).openDrawer();
+                        },
+                        icon: Icon(
+                          Icons.menu,
+                          color: Color.fromARGB(224, 255, 255, 255),
+                          size: 25,
+                        )),
+                    Gap(4),
+                    Text(
+                      "News hub",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
                 elevation: 10.0,
                 automaticallyImplyLeading: false,
