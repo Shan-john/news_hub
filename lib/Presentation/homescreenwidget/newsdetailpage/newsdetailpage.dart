@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:gap/gap.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -36,7 +37,7 @@ class NewsDetailScreen extends StatelessWidget {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Gap(30),
               InkWell(
@@ -56,10 +57,16 @@ class NewsDetailScreen extends StatelessWidget {
               Gap(10),
               TitleSection(title: title),
               Gap(5),
-              Align(
-                  alignment: Alignment.centerLeft,
-                  child: SpeakerButton(
-                    content: content,
+              Container(
+                
+                  height: 50,
+                  width: 50,
+                  decoration:const BoxDecoration(color: const Color.fromARGB(255, 44, 44, 44),borderRadius: BorderRadius.all(Radius.circular(20 ))),
+                  
+                  child: Center(
+                    child: SpeakerButton(
+                      content: content,
+                    ),
                   )),
               Gap(5),
               DescriptionSection(description: description),

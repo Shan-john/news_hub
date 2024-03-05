@@ -40,13 +40,13 @@ class _MyappState extends State<Myapp> {
   Future<void> fetchData() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.none) {
-      Routes.instance
-          .pushreplace(widget: PoornetWortScreen(), context: context);
+      Routes.instance.push(widget: PoornetWortScreen(), context: context);
 
       return;
     }
     // HTTP request here
     try {
+      
       Data.instance.wallStreetArticle =
           await ApirequestCall.instance.wallStreetJournalApifun();
 
@@ -64,9 +64,9 @@ class _MyappState extends State<Myapp> {
 
       Data.instance.articlesAboutbuisness!.articles!
           .removeWhere((element) => element.urlToImage == null);
-
-     
-      MaterialPageRoute(builder: (context) {
+      
+      // Routes.instance.push(widget: HomeScreen(), context: context);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
         return StreamBuilder(
           stream: FirebaseAuth_Helper.instance.getAuthChange,
           builder: (context, snapshot) {
@@ -77,23 +77,21 @@ class _MyappState extends State<Myapp> {
             }
           },
         );
-      });
+      }));
     } on Exception catch (e) {
-    
-      Routes.instance
-          .pushreplace(widget: PoornetWortScreen(), context: context);
+      Routes.instance.push(widget: PoornetWortScreen(), context: context);
     }
   }
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 36, 36, 36),
         body: Center(
           child: Container(
               alignment: Alignment.center,
-              height: 200 ,
+              height: 200,
               child: Image.asset(Customimage.instance.applogo)),
         ));
-  } 
+  }
 }

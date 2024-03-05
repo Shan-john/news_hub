@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/newscard.dart';
+import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/newsDetailpage.dart';
+import 'package:news_hub/constant/Routes.dart';
 import 'package:news_hub/constant/constantvariables.dart';
 import 'package:news_hub/model/buisness/article.dart';
 
@@ -63,11 +65,20 @@ class _BuisnessArticleSearchpageState extends State<BuisnessArticleSearchpage> {
                     itemBuilder: (context, index) {
                       final article = dataSearchlist[index];
 
-                      return NewsCard(
-                          image: article.urlToImage ??
-                              Customimage.instance.nullimage,
-                          title: article.title ?? "dcc",
-                          Discription: article.description ?? "Ddd");
+                      return InkWell(
+                        onTap: () =>Routes.instance.push(widget:  NewsDetailScreen(
+                            animationtagindex: index,
+                            imageurl: article.urlToImage!,
+                            title: article.title!,
+                            description: article.description!,
+                            content: article.content!,
+                            directurl: article.url!), context: context),
+                        child: NewsCard(
+                            image: article.urlToImage ??
+                                Customimage.instance.nullimage,
+                            title: article.title ?? "dcc",
+                            Discription: article.description ?? "Ddd"),
+                      );
                     })
                 : Center(
                     child: Text(

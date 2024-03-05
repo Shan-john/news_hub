@@ -20,6 +20,7 @@ class LoginScreen extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Gap(90),
               Text(
@@ -65,6 +66,7 @@ class LoginScreen extends StatelessWidget {
                   );
                   if (validation) {
                     login = await FirebaseAuth_Helper.instance.Login(
+
                       emailcontroller.text,
                       passwordcontroller.text,
                     );

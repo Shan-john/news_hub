@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:news_hub/Presentation/homescreenwidget/Homelistveiw/newscard.dart';
 import 'package:news_hub/Presentation/homescreenwidget/home/widget.dart';
+import 'package:news_hub/Presentation/homescreenwidget/newsdetailpage/newsDetailpage.dart';
 import 'package:news_hub/constant/constantvariables.dart';
 import 'package:news_hub/constant/routes.dart';
 
@@ -64,17 +65,26 @@ class _SearchPageState extends State<WallstreetArticleSearchpage> {
             child: dataSearchlist.isNotEmpty
                 ? ListView.builder(
                     itemCount: dataSearchlist.length,
-                    // separatorBuilder: ((context, index) => SizedBox()),
+                   
                     itemBuilder: (context, index) {
                       final article = dataSearchlist[index];
 
-                      return NewsCard(
-                          image: article.urlToImage ??
-                              Customimage.instance.nullimage,
-                          title: article.title ?? "dcc",
-                          Discription: article.description ?? "Ddd");
+                      return InkWell(
+                        onTap: () => Routes.instance.push(widget:  NewsDetailScreen(
+                            animationtagindex: index,
+                            imageurl: article.urlToImage!,
+                            title: article.title!,
+                            description: article.description!,
+                            content: article.content!,
+                            directurl: article.url!), context: context),
+                        child: NewsCard(
+                            image: article.urlToImage ??
+                                Customimage.instance.nullimage,
+                            title: article.title ?? "dcc",
+                            Discription: article.description ?? "Ddd"),
+                      );
                     })
-                : Center(
+                : const Center(
                     child: Text(
                     "Search",
                     style: TextStyle(color: Colors.white, fontSize: 18),
@@ -83,29 +93,13 @@ class _SearchPageState extends State<WallstreetArticleSearchpage> {
 
   List<Article> searchArticle(String value) {
     return
-        //  Data.instance.wallStreetArticle!.articles!.contains(value)?
+      
         Data.instance.wallStreetArticle!.articles!
             .where((element) =>
                 element.title.toString().contains(value.toLowerCase()) ||
                 element.description.toString().contains(value.toLowerCase()))
             .toList();
-    //: Data.instance.articlesAboutBitcoin!.articles!.contains(value)? Data.instance.articlesAboutBitcoin!.articles!
-    // .where((element) =>
-    //     element.title.toString().contains(value.toLowerCase()) ||
-    //     element.description.toString().contains(value.toLowerCase()))
-    // .toList() : Data.instance.wallStreetArticle!.articles!
-    // .where((element) =>
-    //     element.title.toString().contains(value.toLowerCase()) ||
-    //     element.description.toString().contains(value.toLowerCase()))
-    // .toList() ;
+    
   }
 }
-
-// class wallstreet extends StatelessWidget {
-//   wallstreet({super.key});
-//   List<Article> dataSearchlist = [];
-//   @override
-//   Widget build(BuildContext context) {
-//     return
-//   }
-// }
+ 

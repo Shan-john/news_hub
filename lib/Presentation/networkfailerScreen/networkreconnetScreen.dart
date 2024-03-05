@@ -3,11 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:news_hub/Presentation/Auth/loginPage.dart';
 import 'package:news_hub/Presentation/homescreenwidget/home/home.dart';
 import 'package:news_hub/constant/constantvariables.dart';
 import 'package:news_hub/constant/routes.dart';
 import 'package:news_hub/httpRequest/technology_http_request.dart';
 import 'package:news_hub/main.dart';
+import 'package:news_hub/service/firebase_auth_helper.dart';
 
 class PoornetWortScreen extends StatelessWidget {
   @override
@@ -27,11 +29,21 @@ class PoornetWortScreen extends StatelessWidget {
             await ApirequestCall.instance.ArticlesAboutBitcoinApifun();
         Data.instance.articlesAboutbuisness =
             await ApirequestCall.instance.ArticlesAboutBuisnessApifun();
-        Routes.instance.pushreplace(widget: HomeScreen(), context: context);
-
-        print("data got");
+        MaterialPageRoute(
+            builder: (context) => StreamBuilder(
+                stream: FirebaseAuth_Helper.instance.getAuthChange,
+                builder: (context, snapshots) {
+                  if (snapshots.hasData) {
+                     Routes.instance.pop(context);
+                    return HomeScreen();
+                  } else {
+                         Routes.instance.pop(context);
+                    return LoginScreen();
+                  }
+                }));
       } on Exception catch (e) {
-        print("shan john Error :$e");
+        Routes.instance
+            .pushreplace(widget: PoornetWortScreen(), context: context);
       }
     }
 

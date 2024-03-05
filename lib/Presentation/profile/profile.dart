@@ -5,10 +5,35 @@ import 'package:gap/gap.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:news_hub/constant/constantvariables.dart';
 import 'package:news_hub/constant/functions.dart';
+import 'package:news_hub/model/user/user.dart';
 import 'package:news_hub/service/firebase_auth_helper.dart';
+import 'package:news_hub/service/firebase_storeage_helper.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  @override
+  void initState() {
+    getUserInformation();
+    super.initState();
+  }
+
+  UserModel userinformation = UserModel();
+  Future<void> getUserInformation() async {
+    userinformation =
+        await Firebase_Storage_helper.instance.getuserinformation();
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +56,14 @@ class SettingsPage extends StatelessWidget {
           ),
           ListTile(
             title: Text(
-              "Shan john",
+              userinformation.names ?? "",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 19,
                   fontWeight: FontWeight.bold),
             ),
             subtitle: Text(
-              "Shanjohn5308@gmail.com",
+              userinformation.email ?? "",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,
@@ -49,9 +74,10 @@ class SettingsPage extends StatelessWidget {
           Primarybutton(
             size: 90,
             colors: Color.fromARGB(255, 209, 209, 209),
-            label: "Logout" ,
+            label: "Logout",
             fontsize: 17,
             textcolors: Color.fromARGB(255, 37, 37, 37),
+            onpressed: () => FirebaseAuth_Helper.instance.logout(),
           )
         ],
       ),

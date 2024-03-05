@@ -15,12 +15,20 @@ class LinkSection extends StatelessWidget {
       onTap: () {
         launchweb(url: directurl);
       },
-      child: Text(
-        directurl,
-        style: TextStyle(
-            fontWeight: FontWeight.w300,
-            color: Color.fromARGB(255, 0, 81, 255),
-            fontSize: 15),
+      child: Container(
+         padding: EdgeInsets.all(20),  
+        decoration:   const BoxDecoration(  
+          color: Color.fromARGB(255, 22, 41, 58),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+        child: Center( 
+          child: Text( 
+            directurl,
+            style: TextStyle(
+                fontWeight: FontWeight.w300,
+                color: Color.fromARGB(255, 255, 255, 255),
+                fontSize: 15),
+          ),
+        ),
       ),
     );
   }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
+
 import 'package:news_hub/Presentation/homescreenwidget/home/home.dart';
 import 'package:news_hub/constant/functions.dart';
 import 'package:news_hub/constant/routes.dart';
 import 'package:news_hub/service/firebase_auth_helper.dart';
+import 'dart:math' show asin, cos, pi, pow, sin, sqrt;
 
 class SignUppage extends StatelessWidget {
   SignUppage({super.key});
@@ -19,7 +22,7 @@ class SignUppage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Column(
@@ -54,6 +57,7 @@ class SignUppage extends StatelessWidget {
                 ),
                 const Gap(40),
                 textfieldeditor(
+                  keyboardType :TextInputType.emailAddress,
                   height: 60,
                   controller: emailcontroller,
                   decoration: InputDecoration(
@@ -80,18 +84,19 @@ class SignUppage extends StatelessWidget {
                   label: "SIGN IN",
                   fontsize: 18,
                   textcolors: Colors.white,
-                  onpressed:   () async {
+                  onpressed: () async {
                     // checking the password and email are not null if it true return true
                     bool validation = false;
-                    validation = signUpAuthvalidation(
-                        emailcontroller.text, passwordcontroller.text,usernamecontroller.text);
+                    validation = signUpAuthvalidation(emailcontroller.text,
+                        passwordcontroller.text, usernamecontroller.text);
                     if (validation) {
-                      FirebaseAuth_Helper.instance.SignUp(usernamecontroller.text,
-                          emailcontroller.text, passwordcontroller.text, );Routes.instance.pushandRemoveUntil(
-                        widget:  HomeScreen(),
-                        context: context);
+                  bool isSignuped =  await  FirebaseAuth_Helper.instance.SignUp(emailcontroller.text, passwordcontroller.text, usernamecontroller.text);
+                      isSignuped == true?
+                      Routes.instance.pushandRemoveUntil(
+                          widget: HomeScreen(), context: context) : showMessage(
+                            "failed" 
+                          );
                     }
-                    
                   },
                 ),
                 Gap(20),

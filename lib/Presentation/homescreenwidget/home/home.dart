@@ -15,6 +15,8 @@ import 'package:news_hub/Presentation/homescreenwidget/horizontalscrollwidget/ho
 import 'package:news_hub/Presentation/profile/profile.dart';
 import 'package:news_hub/constant/constantvariables.dart';
 import 'package:news_hub/constant/routes.dart';
+import 'package:news_hub/model/user/user.dart';
+import 'package:news_hub/service/firebase_storeage_helper.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -24,19 +26,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    updateWidget();
-    super.initState();
-  }
-
-  Future<void> updateWidget() async {
-    Future.delayed(Duration(seconds: 2), () {
-      setState(() {});
-    });
-
-    print("data got");
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
